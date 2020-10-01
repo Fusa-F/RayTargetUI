@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RayManager : MonoBehaviour
 {
     [SerializeField, Header("レイの長さ")] private float rayDistance = 30f;
+    [SerializeField, Header("照準")] private Image aim;
+
     [SerializeField, Header("--targetオブジェクト--")]
     private GameObject targetObj;
     private Renderer renderer;
@@ -19,16 +22,18 @@ public class RayManager : MonoBehaviour
 
     void Update()
     {
-        // //マウス座標の取得
-        // Vector3 pos = Input.mousePosition;
-        // pos.z = 10f;
-        // Vector3 Vector3.forward = Camera.main.ScreenToWorldPoint(pos);
+        //マウスを画面中心に固定
+        Cursor.lockState = CursorLockMode.Locked;
+        //マウス座標の取得
+        Vector3 pos = Input.mousePosition;
+        pos.z = 90f;
+        Vector3 rayDirection = Camera.main.ScreenToWorldPoint(pos);
 
         Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(Vector3.zero);
 
         //レイ構文
         RaycastHit hit;
-        if(Physics.Raycast(rayOrigin, Vector3.forward, out hit, rayDistance))
+        if(Physics.Raycast(rayOrigin, rayDirection, out hit, rayDistance))
         {
             if(hit.collider.gameObject.layer == LayerMask.NameToLayer("Target"))
             {
@@ -43,6 +48,6 @@ public class RayManager : MonoBehaviour
             }
         }
 
-        Debug.DrawRay(transform.position, Vector3.forward * rayDistance, Color.green, 5, false);        
+        Debug.DrawRay(transform.position, rayDirection * rayDistance, Color.green, 5, false);        
     }
 }
