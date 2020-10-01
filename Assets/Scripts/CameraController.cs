@@ -14,14 +14,20 @@ public class CameraController : MonoBehaviour
 	
 	void Update()
     {
+        MoveCamera();
+    }
+
+    private void MoveCamera()
+    {
         //ドラッグ中のみ
         if(Input.GetMouseButton(0))
         {
-            float xRotate = Input.GetAxis("Mouse X") * speed;
-            float yRotate = Input.GetAxis("Mouse Y") * speed;
-            // 見づらくなるので回転軸を分ける
-            playerTransform.transform.Rotate(0, xRotate, 0);
-            transform.Rotate(-yRotate, 0, 0);
+            return;
         }
+        float xRotate = Input.GetAxis("Mouse X") * speed;
+        float yRotate = Input.GetAxis("Mouse Y") * speed;
+        // 見づらくなるので回転軸を分ける
+        playerTransform.transform.Rotate(0, xRotate, 0);
+        transform.Rotate(-yRotate, 0, 0);
     }
 }
