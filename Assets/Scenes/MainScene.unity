@@ -671,6 +671,7 @@ MonoBehaviour:
   nameTxt: {fileID: 388087531}
   meterObj: {fileID: 1313451891}
   meter: {fileID: 596757232}
+  cube: {fileID: 5057131116971269000, guid: 0f069f2b10b4d437d864dda16495db6f, type: 3}
 --- !u!1 &732094983
 GameObject:
   m_ObjectHideFlags: 0

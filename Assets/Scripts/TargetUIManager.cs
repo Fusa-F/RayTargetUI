@@ -18,6 +18,8 @@ public class TargetUIManager : MonoBehaviour
         get{ return isWatching; }
     }
 
+    [SerializeField, Header("cube")] private GameObject cube;
+
     void Start()
     {
         nameTxt.gameObject.SetActive(false);
@@ -36,7 +38,7 @@ public class TargetUIManager : MonoBehaviour
             time += Time.deltaTime;  
             if(meter.fillAmount == 1)
             {
-                Debug.Log("イベント!");
+                Instantiate(cube);
             }  
         }else{
             time = 0f;
